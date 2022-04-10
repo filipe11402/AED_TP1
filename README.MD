@@ -13,18 +13,18 @@ Após analisar as constraints do problema, fiz um brainstorming e pesquisei que 
 ### Resolução do problema
 
 #### Estrutura de dados escolhidas
-Para resolver o problema, decidi, usar 2 tipos de estrutura de dados + 1 estrutura de dados para retorno.
-```HashMap<Character, Integer>``` para armazenar o caracter bem como a posição do mesmo, na string ordenada, pois como não existe caractéres repetidos.
-```Char[]```, para ser usado como a minha string ordenada.
-```Pair<String, Integer>``` para retornar, a string ordenada e o número de passos.
+Para resolver o problema, decidi, usar apenas 1 tipo de estrutura de dados, ```char[]```
 
 #### Lógica
-Iterar sobre a string ordenada, e armazenar no Hashmap, o caractér como chave, e a posição do mesmo na string, como valor.
-Após isso, iterar sobre a string não ordenada, e inserir no ```Char[]``` o valor do caracter atual da iteração, com base na posição que o mesmo tem, no ```HashMap<>```, ```dict.get(caracter)``` e incrementamos o número de jogadas, pois é aqui que se dá o processo de ordenação.
-Iteramos de seguida sobre o ```Char[]```, e inserimos no StringBuilder, para criarmos uma string através de um array.
-Retornamos de seguida o StringBuild + o número total de jogadas, como um Tuple(Pair).
-
+De início, passei a string não ordenada, para um ```char[]```, após isso, fiz uma iteração, com limite ```< .length```.
+Por cada iteração, caso o item na posição i da string desordenada, fosse diferente do item na string ordenada, era feito o swap.
+Foi criado uma variável temp, de seguida na string desordenada, na posição i, era inserido o item na posição i, da string ordenada.
+No final, era retirado a posição do item temporário, na string ordenada, e inserido na mesma posição, na string desordenada.
 
 ### Testes
 - Framework usada: JUnit
-- Criado apenas um método, com a data annotation ```@ParameterizedTest```, de forma a testarmos vários tipos de input.
+- Criado apenas um método, visto que apenas foi criado um método e era esse que era necessário os devidos testes
+
+### Resolução
+Para concluir, este algoritmo possui inúmeros tipos diferentes de resoluções, send que a escolhida, foi com recurso ao Bucket Sort.
+Sinto que isto não será, de longe a melhor resolução, mas cumpre o objetivo pedido, e que está sempre aberto a melhorias, como sempre.

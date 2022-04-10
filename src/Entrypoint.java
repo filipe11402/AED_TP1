@@ -1,34 +1,32 @@
-import java.util.HashMap;
-
-import javafx.util.Pair;
-
 public class Entrypoint{
     public static void main(String[] args){
         String actual = "123456789";
         String expected = "987654321";
 
-        System.out.println(customStringOrderer(actual, expected));
+        customStringOrderer(actual, expected);
     }
 
-    public static Pair<String, Integer> customStringOrderer(String actual, String desired){
-        HashMap<Character, Integer> dict = new HashMap<>();
+    public static String customStringOrderer(String actual, String desired){
         int totalPlays = 0;
 
+        char[] sortedArray = actual.toCharArray();
 
-        char[] sortedArray = new char[desired.length()];
+        for(int i = 0;i < desired.length();i++){
+            char temp;
+            if(sortedArray[i] != desired.charAt(i)){
+                totalPlays++;
+                temp = sortedArray[i];
+                sortedArray[i] = desired.charAt(i);
 
-        for(int i = 0;i < desired.toCharArray().length;i++){
-            totalPlays++;
-            dict.put(desired.charAt(i), i);
+                sortedArray[desired.indexOf(temp)] = temp;
+
+                System.out.println(new String(sortedArray));
+            }
         }
 
-        for(char item: actual.toCharArray()){
-            sortedArray[dict.get(item)] = item;
-        }
+        System.out.println("Original String: " + actual + "\n" + "Output: " + desired + "\n");
+        System.out.println("Total needed movements: " + totalPlays);
 
-        StringBuilder sb = new StringBuilder(desired.length());
-        for(char item: sortedArray){ sb.append(item); }
-
-        return new Pair<String,Integer>(sb.toString(), totalPlays);
+        return new String(sortedArray);
     }
 }

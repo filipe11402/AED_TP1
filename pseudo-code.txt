@@ -1,0 +1,16 @@
+Order string custom way
+
+Set totalPlays to 0
+
+for i = 0;i < string.length;i++
+    Initialize temp_var
+
+    if unordered string char at i != ordered string char at i
+        increase totalPlays by 1
+        temp_var = unordered char at i
+        unordered string at i = ordered string at i
+        unordered string at temp_var position on ordered string = temp_var
+    
+    print unordered string
+
+return unordered string, ordered
