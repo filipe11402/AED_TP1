@@ -1,42 +1,17 @@
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Entrypoint{
     public static void main(String[] args){
-        String puzzle = "987 76321";
+        String stringData = "2831647 5";
+        String solvedString = "1238 4765";
 
-        /**
-         * The white piece can only move around the exact position before and after it
-         * and the items that are exactly 2 positions from it 
-         */
+        Puzzle puzzle = new Puzzle(stringData, solvedString);
+        Node result = puzzle.solve();
 
-         /**
-          * APPLY Brute Force Algorithm of type Depth-First on which we explore a Node at it maximum
-          * Need to have 2 lists of Nodes, one for the string format that was discovered but their children were not discovered yet
-          * another list with the items on which the kids were already generated
-          */
+        Stack<Node> stuff = puzzle.reverseThree(result);
 
-          /**
-           * Constraints: 
-           * When we find a string that already was generated we dont count it as
-           */
-
-          /**
-           * Create class node with constraints and attributes and the whitespace position
-           * Add LinkedList of Node inside Puzzle class
-           */
-        eightPuzzleSolver(puzzle);
-    }
-
-    public static String eightPuzzleSolver(String puzzle){
-        ArrayList<String> openNodes = new ArrayList<String>();
-        ArrayList<String> closedNodes = new ArrayList<String>();
-        Integer whitePiecePosition = getEmptySpace(puzzle);
-
-
-        return new String();
-    }
-
-    public static int getEmptySpace(String value){
-        return value.indexOf(" ");
+        for (Node node : stuff) {
+            System.out.println(node.getValue());
+        }
     }
 }

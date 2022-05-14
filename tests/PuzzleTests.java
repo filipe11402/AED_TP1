@@ -1,10 +1,7 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.LinkedList;
-
 import org.junit.Test;
 
 public class PuzzleTests {
@@ -29,14 +26,28 @@ public class PuzzleTests {
 
     @Test
     public void generateRootChildren_returnsAllRootParentChildren(){
-        String notSolved = "1 3567489";
-        String solved = "98756 321";
-        Puzzle puzzle = new Puzzle(notSolved, solved);
+        Node notSolved = new Node("1 3567489");
+        Node solved = new Node("98756 321");
+        Puzzle puzzle = new Puzzle(notSolved.getValue(), solved.getValue());
         puzzle.calculateConstraints();
-        LinkedList<String> expectedChildren = new LinkedList<String>(Arrays.asList(" 13567489", "13 567489", "1635 7489"));
+        LinkedList<Node> expectedChildren = new LinkedList<Node>(Arrays.asList(new Node("13 567489"), new Node(" 13567489"), new Node("1635 7489")));
         
-        LinkedList<String> actual = puzzle.generateRootChildren();
+        LinkedList<Node> actual = puzzle.generateChildNode();
 
-        assertTrue(expectedChildren.containsAll(actual));
+        assertTrue(actual.containsAll(expectedChildren));
+    }
+
+    @Test
+    public void NodeAlreadyDiscovered_returnsTrue(){
+        Node fakeNode = new Node(" 13567489");
+        Node notSolved = new Node("1 3567489");
+        Node solved = new Node("98756 321");
+        Puzzle puzzle = new Puzzle(notSolved.getValue(), solved.getValue());
+        puzzle.calculateConstraints();
+        puzzle.generateChildNode();
+
+        Boolean actual = puzzle.NodeAlreadyVisited(fakeNode);
+
+        assertTrue(actual);
     }
 }
