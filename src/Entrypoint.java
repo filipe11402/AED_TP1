@@ -13,5 +13,7 @@ public class Entrypoint{
         for (Node node : stuff) {
             System.out.println(node.getValue());
         }
+
+        System.out.println(stuff.size());
     }
 }

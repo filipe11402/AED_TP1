@@ -3,8 +3,6 @@ import java.util.Stack;
 
 public class Puzzle {
     private String _solved;
-    
-    private String _toBeSolved;
 
     private Node _currentNode;
 
@@ -26,7 +24,6 @@ public class Puzzle {
 
     public Puzzle(String toBeSolved, String solved) {
         _solved = solved;
-        _toBeSolved = toBeSolved;
         _currentNode = new Node(toBeSolved);
         _openNodes = new LinkedList<Node>();
         _closedNodes = new LinkedList<Node>();
@@ -47,7 +44,7 @@ public class Puzzle {
         return _currentNode;
     }
 
-    public LinkedList<Node> generateChildNode(){
+    private LinkedList<Node> generateChildNode(){
         Node newNode = null;
         if(_rightConstraint != null){
             StringBuilder builder = new StringBuilder(_currentNode.getValue());
@@ -98,7 +95,7 @@ public class Puzzle {
         return _openNodes;
     }
 
-    public void calculateConstraints(){
+    private void calculateConstraints(){
         _whitePiecePosition = _currentNode.getValue().indexOf(' ');
 
         _rightConstraint = _whitePiecePosition + 1 > 8 ? null : _whitePiecePosition + 1;
@@ -107,7 +104,7 @@ public class Puzzle {
         _downConstraint = _whitePiecePosition + 3 > 8 ? null : _whitePiecePosition + 3;
     }
 
-    public Boolean NodeAlreadyVisited(Node value){
+    private Boolean NodeAlreadyVisited(Node value){
         for (Node node : _closedNodes) {
             if(node.getValue().equalsIgnoreCase(value.getValue())){
                 return true;
@@ -118,8 +115,8 @@ public class Puzzle {
 
     public Stack<Node> reverseThree(Node node){
         if(node.getParentNode() != null){
-            _nodeThree.add(node);
             _nodeThree.add(node.getParentNode());
+
             reverseThree(node.getParentNode());
         }
 
