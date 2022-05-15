@@ -118,6 +118,7 @@ public class Puzzle {
 
     public Stack<Node> reverseThree(Node node){
         if(node.getParentNode() != null){
+            _nodeThree.add(node);
             _nodeThree.add(node.getParentNode());
             reverseThree(node.getParentNode());
         }

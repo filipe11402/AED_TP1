@@ -1,16 +1,41 @@
-Order string custom way
+Encontra o caminho do puzzle para o resultado desejado
+Explicação do algoritmo usado pelo método solve()
 
-Set totalPlays to 0
+function solve(){
+    calcula as 4 limitacoes do no inicial
+    adiciona o no atual a lista de nos nao visitados, _openNodes
+    calcula os filhos possiveis do no com base nas limitacoes
 
-for i = 0;i < string.length;i++
-    Initialize temp_var
+    enquanto o a lista de nós nao visitados estiver vazia ou o no atual nao for igual ao objetivo
+        no atual passa a ser o primeiro item da lista retirando o mesmo de la
+        calcula as 4 limitacoes do no
+        calcula os filhos possiveis do no com base nas limitacoes
 
-    if unordered string char at i != ordered string char at i
-        increase totalPlays by 1
-        temp_var = unordered char at i
-        unordered string at i = ordered string at i
-        unordered string at temp_var position on ordered string = temp_var
-    
-    print unordered string
+    retornar o nó atual
+}
 
-return unordered string, ordered
+function generateChildNode(){
+    se algum dos limites != null
+        trocar a posicao do espaço pelo item do lado desejado
+        gerar um nó
+        se nó nao estar na lista de nós não visitados adicionar a lista
+
+    inserir nó atual á lista de nós visitados
+    retornar a lista de nós não visitados
+}
+
+function calculateConstraints(){
+    index do espaço
+    se o index do espaço + 1 > 8 lado direito = null senao lado direito += 1
+    se o index do espaço - 1 > 8 lado esquerdo = null senao lado direito -= 1
+    se o index do espaço - 3 > 8 cima = null senao cima -= 3
+    se o index do espaço + 3 > 8 baixo = null senao baixo += 3
+}
+
+function nodeAlreadyVisited(Node node){
+    por cada nófechado em nós visitados
+        se o nó == nóFechado
+            return true
+    senao
+        return false
+}

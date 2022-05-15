@@ -6,25 +6,42 @@
 ### Abordagem ao problema
 
 Comecei por analisar qual é o output desejado, e fiz as seguintes questões:
-- Pode haver valores repetidos?
+- Como conseguir saber quais eram os pais do resultado obtido?
+- Qual a melhor maneira de saber que já tinha passado por aquele ``Nó``
 
-Após analisar as constraints do problema, fiz um brainstorming e pesquisei que tipo de Sorts seria melhor aplicado para esta situação, acabando por escolher o Bucket Sort
+Após analisar as constraints do problema, vi que tipo de algoritmo, que se enquadrava na categoria Brute Force Searching, mais concretamente, o Breath First;
+
+O que é o Breath-First Algorithm?
+- Começamos por gerar os filhos, com base no Root ``Node``, de seguida, fazemos mais 1 iteracao para baixo, de forma a gerar os filhos, dos ``Nodes`` gerados previamente
+- Tendo sempre em atenção, se os filhos gerados, já o tenham sido descobertos
 
 ### Resolução do problema
 
 #### Estrutura de dados escolhidas
-Para resolver o problema, decidi, usar apenas 1 tipo de estrutura de dados, ```char[]```
+Para resolver o problema, decidi, usar apenas 2 tipos de estruturas de dados:
+- LinkedList
+- Stack
 
 #### Lógica
-De início, passei a string não ordenada, para um ```char[]```, após isso, fiz uma iteração, com limite ```< .length```.
-Por cada iteração, caso o item na posição i da string desordenada, fosse diferente do item na string ordenada, era feito o swap.
-Foi criado uma variável temp, de seguida na string desordenada, na posição i, era inserido o item na posição i, da string ordenada.
-No final, era retirado a posição do item temporário, na string ordenada, e inserido na mesma posição, na string desordenada.
+##### Descobir o objetivo
+- Começei por calcular quais as constraints do Root ``Node``, para saber para onde o nó se consegue mexer.
+- Após isso, gerei os filhos com base nas limitações dos movimentos, e armazenei os nodes uma ``LinkedList<Node>`` de nós ainda não visitados(open nodes), e inseri o node pai, numa mesma estrutura de dados de nós já visitados(closed nodes).
+- De seguida, por cada filho que estava nos nós náo visitados, gerei os filhos uma camada para baixo, e se esse nó ainda não tinha sido visitado, então o mesmo era adicionado á lista de nós não visitados.
+- No próximo passo, eu removia o o primeiro item da lista, de nós não visitados, com recurso ao método ``.poll()``, e adicionava o mesmo aos nós já visitados.
+- Por fim, eu ia buscar o filho seguinte(ainda na primeira camada), calculava os seus limites, e gerava os seus filhos, seguindo a mesma logica para cada iteração;
+- A iteração, irá acabar assim que a lista de nós estiver vazia, ou o nó atual for igual ao objetivo desejado;
+
+##### Saber todos os pais do resultado
+- Foi usado o algoritmo Tranverse Three, de forma a subirmos a árvore, para ir buscar todos os pais do nó gerado e por sua vez, mostrar toda a árvore.
 
 ### Testes
 - Framework usada: JUnit
-- Criado apenas um método, visto que apenas foi criado um método e era esse que era necessário os devidos testes
+[here](https://github.com/filipe11402/AED_TP1/tree/master/tests)
 
 ### Resolução
-Para concluir, este algoritmo possui inúmeros tipos diferentes de resoluções, send que a escolhida, foi com recurso ao Bucket Sort.
+Para concluir, este algoritmo possui inúmeros tipos diferentes de resoluções, sendo que a escolhida, foi com recurso ao Breath First(Brute Force algorithms).
 Sinto que isto não será, de longe a melhor resolução, mas cumpre o objetivo pedido, e que está sempre aberto a melhorias, como sempre.
+
+### Resources
+[Brute Force Algorithms](https://javascript.plainenglish.io/solving-8-puzzle-exploring-search-options-2e446e29d21)
+[Breath First Example](https://www.youtube.com/watch?v=sXgvdmzTiug)
