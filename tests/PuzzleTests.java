@@ -1,13 +1,16 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import java.util.Arrays;
-import java.util.LinkedList;
 import org.junit.Test;
 
 public class PuzzleTests {
     @Test
     public void solve_ReturnsSolvedNode(){
-        assertTrue(true);
+        String solved = "2831647 5";
+        String notSolved = "1238 4765";
+
+        Puzzle puzzle = new Puzzle(notSolved, solved);
+
+        Node actual = puzzle.solve();
+
+        assertTrue(actual.getValue().equalsIgnoreCase(solved));
     }
 }

@@ -10,6 +10,8 @@ public class Entrypoint{
 
         Stack<Node> stuff = puzzle.reverseThree(result);
 
+        System.out.println(result.getValue());
+
         for (Node node : stuff) {
             System.out.println(node.getValue());
         }
