@@ -1,32 +1,21 @@
+import java.util.Stack;
+
 public class Entrypoint{
     public static void main(String[] args){
-        String actual = "123456789";
-        String expected = "987654321";
+        String stringData = "2831647 5";
+        String solvedString = "1238 4765";
 
-        customStringOrderer(actual, expected);
-    }
+        Puzzle puzzle = new Puzzle(stringData, solvedString);
+        Node result = puzzle.solve();
 
-    public static String customStringOrderer(String actual, String desired){
-        int totalPlays = 0;
+        Stack<Node> stuff = puzzle.reverseThree(result);
 
-        char[] sortedArray = actual.toCharArray();
+        System.out.println(result.getValue());
 
-        for(int i = 0;i < desired.length();i++){
-            char temp;
-            if(sortedArray[i] != desired.charAt(i)){
-                totalPlays++;
-                temp = sortedArray[i];
-                sortedArray[i] = desired.charAt(i);
-
-                sortedArray[desired.indexOf(temp)] = temp;
-
-                System.out.println(new String(sortedArray));
-            }
+        for (Node node : stuff) {
+            System.out.println(node.getValue());
         }
 
-        System.out.println("Original String: " + actual + "\n" + "Output: " + desired + "\n");
-        System.out.println("Total needed movements: " + totalPlays);
-
-        return new String(sortedArray);
+        System.out.println(stuff.size());
     }
 }
